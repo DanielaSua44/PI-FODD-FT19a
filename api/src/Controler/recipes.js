@@ -2,7 +2,9 @@ const { Recipe, Type } = require('../db');
 const { Op } = require("sequelize");
 const axios = require('axios').default;
 const { v4: uuidv4 } = require('uuid');
-const {COMPLEX_URL,API_KEY}=require('../constants')
+const {COMPLEX_URL,API_KEY}=require('../constants');
+const validator = require('validator');
+
 
 
 const getRecipes = async (req, res, next) => {
@@ -25,7 +27,7 @@ const getRecipes = async (req, res, next) => {
                     types: recipe.diets.map(el => el)
                 }
             })
-            console.log("TODO",apiRecipes)
+        
             dbRecipes = await Recipe.findAll({
                 include: Type,
                 where: {
@@ -116,9 +118,9 @@ const addRecipe = async (req, res, next) => {
 
 const getRecipeById= async (req,res,next)=> {
     try {
-        const id=req.params
+        const {id}=req.params
         let recipes
-        if(isNaN(id)){
+        if(validator.isUUID(id)){
             recipes= await Recipe.findByPk(id,{
                 include:{
                     model:Type,
@@ -129,11 +131,22 @@ const getRecipeById= async (req,res,next)=> {
                 }
             })
         }else{
-            recipes= await axios.get(`https://api.spoonacular.com/recipes/${id}/information&apiKey=5fa24e2c9aca4c199be40ff06ed2dfce`)
-            console.log(recipes.data)
+            let apiInfo= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=5fa24e2c9aca4c199be40ff06ed2dfce`)
+            console.log("TODO",apiInfo.data)
+            recipes={
+                id:apiInfo.data.id,
+                name:apiInfo.data.title,
+                score:apiInfo.data.spoonacularScore,
+                healthScore:apiInfo.data.healthScore,
+                img:apiInfo.data.image,
+                summary:apiInfo.data.summary.replace(/<[^>]*>?/g, ""),
+                steps:apiInfo.data.analyzedInstructions.map(el =>  el.steps.map(e => e.step)),
+                types:apiInfo.data.diets.map( e => e)
+            }
+            console.log(recipes)
             
         }
-        res.send(recipes)
+        return res.json(recipes)
     } catch (error) {
         next(error)
     }
