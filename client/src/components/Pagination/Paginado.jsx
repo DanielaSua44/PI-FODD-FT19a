@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import styles from "./pagination.module.css"
 
 const Paginado = ({ recipePage, totalRecipe, paginate }) => {
     const pageNumber = []
@@ -6,12 +7,12 @@ const Paginado = ({ recipePage, totalRecipe, paginate }) => {
         pageNumber.push(i)
     }
     return (
-        <nav>
-            <ul >
+        <nav className={styles.wrapper}>
+            <ul className={styles.pagination}>
                 {pageNumber &&
                     pageNumber.map(number => (
-                        <li  key={number}> 
-                            <a href="!#" onClick = {() => paginate(number)} >{number}</a>
+                        <li className={styles.pagination.active} key={number} className={styles.pageItem}> 
+                            <a href="!#" onClick = {(e) =>{ e.preventDefault(); paginate(number)}} className={styles.pageLink}>{number}{""}</a>
                         </li>
                     ))
                 }     

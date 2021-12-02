@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getTypes,postRecipe } from "../../Redux/actions";
-import {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom';
+import './formulario.css'
 
 
 
@@ -70,8 +71,8 @@ export const CreateRecipe = () => {
         history.push('/home')
     }
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className="main">
+            <form className="form" onSubmit={handleSubmit}>
                 <label htmlFor="title">Name</label>
                 <input type='text' name='name' value={recipe.name} onChange={handleChange} />
                 <label htmlFor='image'> Image </label>

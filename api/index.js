@@ -18,18 +18,14 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-const { conn,Type} = require('./src/db.js');
-const {typesArray}= require('./src/constants.js')
+const { conn} = require('./src/db.js');
 
-conn.sync({ force:true}).then(() => {
+conn.sync({ force:false}).then(() => {
   server.listen(3001, () => {
     console.log('conectado a la base de datos')
     console.log('%s listening at 3001'); // eslint-disable-line no-console
 
-    typesArray.forEach(async (type) => {
-      await Type.create({
-        name: type,
-      });
+   
   });
 });
-})
+

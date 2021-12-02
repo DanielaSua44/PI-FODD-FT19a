@@ -4,13 +4,16 @@ const axios = require('axios').default;
 const { v4: uuidv4 } = require('uuid');
 const { COMPLEX_URL } = require('../constants');
 const validator = require('validator');
-const {API_KEY}=process.env
+const { API_KEY } = process.env
 
 
 
 const getRecipes = async (req, res, next) => {
     try {
-        let { name } = req.query
+        let {
+            name,
+            order
+        } = req.query
         let dbRecipes
         let apiRecipes
         let allRecipes = []
@@ -38,7 +41,7 @@ const getRecipes = async (req, res, next) => {
                 }
             });
             allRecipes = apiRecipes.concat(dbRecipes)
-            res.send(allRecipes)
+            res.send(allRecipes).status(200)
         } else {
             let apiInfo = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
             let dbInfo = Recipe.findAll({ include: Type })
@@ -70,6 +73,7 @@ const getRecipes = async (req, res, next) => {
                         score: recipe.score,
                         healthScore: recipe.healthScore,
                         summary: recipe.summary,
+                        createdInDb:recipe.createdInDb,
                         steps: recipe.steps,
                         types: recipe.types.map(e => e.name)
 
@@ -77,7 +81,16 @@ const getRecipes = async (req, res, next) => {
                 })
                 //aca los uno
                 allRecipes = apiRecipes.concat(dbRecipes)
-                res.send(allRecipes)
+                if (order === "asc" || !order) {
+                    allRecipes = allRecipes.sort((a, b) => {
+                        return a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+                    })
+                } else if(order === "des" || !order ){
+                    allRecipes = allRecipes.sort((a, b) => {
+                        return b.name.toLowerCase().localeCompare(a.name.toLowerCase())
+                    })
+                }
+                res.send(allRecipes).status(200)
 
             })
         }
@@ -97,6 +110,7 @@ const addRecipe = async (req, res, next) => {
             summary,
             steps,
             img,
+            createdInDb,
             types
         } = req.body
         console.log(name, score, healthScore, summary, steps, img, types)
@@ -107,13 +121,14 @@ const addRecipe = async (req, res, next) => {
             score,
             healthScore,
             summary,
-            steps:[steps],
+            steps: [steps],
             img,
+            createdInDb
         })
-        
-        
-        await newRecipe.addType(typess)
-            
+
+
+        await newRecipe.addType(types)
+
 
         return res.json(newRecipe)
     } catch (error) {
@@ -126,13 +141,9 @@ const getRecipeById = async (req, res, next) => {
         const { id } = req.params
         let recipes
         if (validator.isUUID(id)) {
-            recipes = await Recipe.findByPk(id, {
-                include: {
-                    model: Type,
-                    attributes: ["name"],
-                    through: {
-                        attributes: []
-                    }
+            recipes = await Recipe.findOne({
+                where:{
+                    id:id,
                 }
             })
         } else {
@@ -148,9 +159,9 @@ const getRecipeById = async (req, res, next) => {
                 steps: apiInfo.data.analyzedInstructions.map(el => el.steps.map(e => e.step)),
                 types: apiInfo.data.diets.map(e => e)
             }
-            console.log(recipes)
 
         }
+        console.log(recipes)
         return res.json(recipes)
     } catch (error) {
         next(error)

@@ -1,0 +1,57 @@
+.card{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25vw;
+    height: 80vh;
+    margin: 1rem 0;
+    border: 30px;
+    border-color: #fca771;
+    border-radius: 10px; 
+    box-shadow: -9px 13px 13px 3px rgba(0,0,0,0.94);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 250ms ease;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    border: none;
+}
+
+.img-recipe img{
+	width: 25vw;
+    height: 35vh;
+}
+
+.card-info{
+	width: 25vw;
+    height: 50vh;
+    background-color: #a68900;
+}
+
+.card-info a{
+	color: white;
+    text-decoration: none;
+}
+
+.card-title{
+	font-family:  Arial, sans-serif;
+    font-size: 30px;
+    margin-left: 4px;
+    text-align: left ;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+
+}
+.card-diets{
+    font-size: 15px;
+    text-transform: uppercase;
+    color: white;
+    margin-left: 4px;
+    text-align: left ;
+    text-decoration: none;
+}

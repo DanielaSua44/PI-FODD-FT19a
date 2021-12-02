@@ -1,12 +1,13 @@
-import React ,{useEffect} from "react";
-import { useDispatch,useSelector } from "react-redux";
-import { filterScore, getTypes, orderRecipe,filterTypes } from "../../Redux/actions";
-
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { filterScore, getTypes, filterTypes, getRecipe,filterCreated } from "../../Redux/actions";
+import './Filter.css'
 
 
 export const Filteres = () => {
     const dispatch = useDispatch();
-    const types = useSelector(state => state.diets)
+    const types = useSelector(state => state.diets);
+
 
 
 
@@ -16,7 +17,8 @@ export const Filteres = () => {
 
 
     const handleChange = (e) => {
-        dispatch(orderRecipe(e.target.value))
+    
+        dispatch(getRecipe( e.target.value ))
     };
 
     function handleFilterScore(e) {
@@ -25,14 +27,20 @@ export const Filteres = () => {
 
     const handleOnChange = (e) => {
         console.log(e.target.value)
+        e.preventDefault()
         dispatch(filterTypes(e.target.value));
+
     }
 
+    const handleFilterCreated = (e) => {
+        console.log(e.target.value)
+        dispatch(filterCreated(e.target.value));
+    };
 
     return (
         <div>
             <div>
-                <select id="types" onChange={handleOnChange}>
+                <select className="filter" id="types" onChange={handleOnChange}>
                     <option value='All'>DIETS</option>
                     {
                         types.map(el => (
@@ -40,12 +48,17 @@ export const Filteres = () => {
                         )
                     }
                 </select>
-                <select onChange={(e) => handleChange(e)} name='orderA-Z' id=''>
-                    <option value="all">ALFABETO</option>
+                <select className="filter" onChange={(e) => handleChange(e)} name='orderA-Z' id=''>
+                    <option value="">ALFABETO</option>
                     <option value="asc">ASCENDENTE</option>
                     <option value="des">DESCENDENTE</option>
                 </select>
-                <select onChange={(e) => handleFilterScore(e)} name='score' id=''>
+                <select className="filter" onChange={(e) => handleFilterCreated(e)} >
+                    <option value="All">AllRECIPES</option>
+                    <option value="Created">Creados</option>
+                    <option value="Api">De la Api</option>
+                </select>
+                <select className="filter" onChange={(e) => handleFilterScore(e)} name='score' id=''>
                     <option value="all ">PUNTUACION</option>
                     <option value="asc">ASCENDENTE</option>
                     <option value="des">DESCENDENTE</option>

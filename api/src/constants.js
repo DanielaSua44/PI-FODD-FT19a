@@ -3,8 +3,8 @@ const { apiKeyNumber } = process.env
 const BASE_URL =  'https://api.spoonacular.com/recipes';
 const COMPLEX_URL = BASE_URL + '/complexSearch?addRecipeInformation=true';
 const API_KEY = `apiKey=${apiKeyNumber}`;
-const typesArray = ["gluten free", "ketogenic", "lacto ovo vegetarian", 
-"vegan", "pescatarian", "paleolithic", "primal", "whole30", "dairy free"];
+const diets = ["gluten free", "ketogenic","lacto ovo vegetarian" ,"vegetarian", 
+"vegan", "pescatarian", "paleolithic","low FODMAP", "primal", "whole30", "dairy free"];
 
 
 //396c8a5c1dbd4fe7b2d8f2a895a2c87f
@@ -19,10 +19,14 @@ const typesArray = ["gluten free", "ketogenic", "lacto ovo vegetarian",
 //5fa24e2c9aca4c199be40ff06ed2dfce
 //API_KEY=c95eb74d888c65c71228577795302665
 
-
+//.color1 {color: #e2dd2e;}
+//.color2 {color: #f5dc70;}
+//.color3 {color: #0036bf;}
+//.color4 {color: #0080f9;}
+//.color5 {color: #47dcff;}
 module.exports = { 
     BASE_URL,
     COMPLEX_URL, 
     API_KEY,
-    typesArray
+    diets
 }

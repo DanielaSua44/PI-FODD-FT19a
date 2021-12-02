@@ -1,0 +1,11 @@
+.recipes-home {
+    background:linear-gradient(45deg, #f4651a 0%, #3d697a 50%, #1b2c3f 100%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    image-rendering: crisp-edges;
+    background-image: url("../../Image/descarga.jpg");
+  }
+  
+  

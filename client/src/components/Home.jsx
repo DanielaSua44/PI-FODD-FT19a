@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { getRecipes,unmountAllRecipes } from '../Redux/actions';
 import Paginado from '../components/Pagination/Paginado'
@@ -29,12 +28,8 @@ export const Home = () => {
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
     return (
         <div>
-
-            <NavLink to={'/create'}>
-                <button> Create </button>
-            </NavLink>
-            <Paginado recipePage={recipePage} totalRecipe={recipes.length} paginate={paginate} />
-            <Allcards recipes={currentRecipe} />
+            <Paginado  recipePage={recipePage} totalRecipe={recipes.length} paginate={paginate} />
+            <Allcards  recipes={currentRecipe} />
 
         </div>
     )

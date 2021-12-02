@@ -1,10 +1,11 @@
-import { ADD_RECIPE, GET_RECIPES, GET_TYPES, ORDER_RECIPE, FILTER_SCORE, FILTER_TYPES, UNMOUNT_ALL_RECIPES } from './actions';
+import { ADD_RECIPE, GET_RECIPES,DETAILS, FILTER_CREATED, GET_RECIPE_NAME, GET_TYPES, FILTER_SCORE, FILTER_TYPES, UNMOUNT_ALL_RECIPES, GET_RECIPE } from './actions';
 
 
 const initialState = {
     recipes: [],
     allRecipes: [],
     diets: [],
+    details: []
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -14,6 +15,17 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 recipes: action.payload,
                 allRecipes: action.payload
+            }
+        case DETAILS:
+            return {
+                ...state,
+                details: action.payload
+            }
+        case GET_RECIPE:
+            return {
+                ...state,
+                recipes: action.payload,
+                allrecipes: action.payload
             }
         case GET_TYPES:
             return {
@@ -33,34 +45,16 @@ export default function rootReducer(state = initialState, action) {
                     action.payload,
                 ],
             }
-        case ORDER_RECIPE:
-            const allRecipeA = state.allRecipes
-            const orderA = action.payload === 'all'?state.recipes
-                : action.payload === 'asc' ?
-                    state.allRecipes.sort( (a, b) => {
-                        if (a.name.toLowerCase() > b.name.toLowerCase()) {
-                            return 1;
-                        }
-                        if (b.name.toLowerCase() > a.name.toLowerCase()) {
-                            return -1;
-                        }
-                        return 0;
-                    }) :
-                    state.allRecipes.sort( (a, b) => {
-                        if (a.name.toLowerCase() > b.name.toLowerCase()) {
-                            return -1;
-                        }
-                        if (b.name.toLowerCase() > a.name.toLowerCase()) {
-                            return 1;
-                        }
-                        return 0;
-                    })
-            return { ...state, recipes: action.payload === 'all'?allRecipeA:[...orderA] }
+        case GET_RECIPE_NAME:
+            return {
+                ...state,
+                recipes: action.payload,
+            }
         case FILTER_SCORE:
             const allRecipes3 = state.allRecipes
             const order = action.payload === 'all' ? state.recipes
                 : action.payload === 'asc' ?
-                    state.allRecipes.sort( (a, b) => {
+                    state.allRecipes.sort((a, b) => {
                         if (a.healthScore > b.healhtScore) {
                             return 1;
                         }
@@ -69,7 +63,7 @@ export default function rootReducer(state = initialState, action) {
                         }
                         return 0;
                     }) :
-                    state.allRecipes.sort( (a, b) => {
+                    state.allRecipes.sort((a, b) => {
                         if (a.healthScore > b.healthScore) {
                             return -1;
                         }
@@ -78,8 +72,8 @@ export default function rootReducer(state = initialState, action) {
                         }
                         return 0;
                     })
-                
-            return { ...state, recipes:action.payload === 'all'? allRecipes3: [...order] }
+
+            return { ...state, recipes: action.payload === 'all' ? allRecipes3 : [...order] }
         case FILTER_TYPES:
             const allRecipe1 = state.allRecipes
             const filter = action.payload === 'all' ? allRecipe1
@@ -96,6 +90,13 @@ export default function rootReducer(state = initialState, action) {
                     recipes: allRecipe1
                 }
             }
+        case FILTER_CREATED:
+            console.log(state.allRecipes)
+            const createdFiltered = action.payload === 'Created' ? state.allRecipes.filter(rep => rep.createdInDb):state.allRecipes.filter(rep => !rep.createdInDb)
+                console.log(createdFiltered)
+            return { 
+                ...state, 
+                recipes: action.payload === 'All' ? state.allRecipes : createdFiltered }
 
         default:
             return {

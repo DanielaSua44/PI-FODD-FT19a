@@ -1,0 +1,48 @@
+.InputSearch {
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+    width: 220px;
+    margin-top: 10px;
+    margin-right: 20px;
+    border: 1px solid #b4b3b3;
+    border-top: 1px solid #c7c6c6;
+    border-radius: 5px;
+    height: 35px;
+    
+  }
+  .InputSearch:hover {
+    font-weight: 600;
+    border: 1px solid #999999;
+  }
+
+
+  .buttonSearch {
+    width: 120px;
+    height: 40px;
+    margin-top: 10px;
+    font-size: 15px;
+    color: rgb(0, 0, 0);
+    background: #fff;
+    border: 1px solid #b4b3b3;
+    font-weight: 600;
+  }
+
+  .buttonSearch:hover {
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    background: rgb(0, 0, 0);
+    border: 1px solid rgb(170, 170, 170);
+    box-shadow: 1px 3px 10px 5px rgba(212, 212, 212, 0.747);
+  }
+
+  .buttonSearch:active {
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.945);
+    box-shadow: 1px 3px 10px 5px rgba(212, 212, 212, 0.747);
+  }
