@@ -1,0 +1,63 @@
+.firstPage {
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    background-image: url('../Image/fotografia-de-comida3.jpg');
+    justify-content: center;
+}
+
+.firstPage_btn {
+    margin: 40px;
+}
+
+.startBTN {
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    gap: 20px;
+    border-radius: 150px;
+    background-color: rgba(168,164,164, 0.104);
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+    border: 5px rgba(255,255,255,0.4) transparent;
+    height: 250px;
+    width: 250px;
+    box-sizing: content-box;
+}
+
+.startBTN:hover {
+    animation: border-transition 1.2s forwards ease;
+}
+
+@keyframes border-transition {
+    25% {
+        border-top: 5px rgba(255,255,255,0.4)solid;
+        border-right: 5px rgba(255,255,255,0.4)transparent;
+        border-bottom: 5px rgba(255,255,255,0.4)transparent;
+        border-left: 5px rgba(255,255,255,0.4)transparent;
+    }
+    50% {
+        border-top: 5px rgba(255,255,255,0.4)solid;
+        border-right: 5px rgba(255,255,255,0.4)solid;
+        border-bottom: 5px rgba(255,255,255,0.4)transparent;
+        border-left: 5px rgba(255,255,255,0.4)transparent;
+    }
+    75% {
+        border-top: 5px rgba(255,255,255,0.4)solid;
+        border-right: 5px rgba(255,255,255,0.4)solid;
+        border-bottom: 5px rgba(255,255,255,0.4)solid;
+        border-left: 5px rgba(255,255,255,0.4)transparent;
+    }
+    100% {
+        border: 5px rgba(255,255,255,0.4)solid;
+        color: rgba(255, 255, 255, 0.541);
+        background-color: rgba(168, 164, 164, 0.486);
+        box-sizing: content-box;
+    }
+
+}

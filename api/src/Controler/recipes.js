@@ -19,6 +19,7 @@ const getRecipes = async (req, res, next) => {
         let allRecipes = []
         if (name && name !== "") {
             let apiInfo = (await axios.get(`${COMPLEX_URL}&query=${name}&number=100&apiKey=${API_KEY}`))
+        
             apiRecipes = apiInfo.data.results.map((recipe) => {
                 return {
                     id: recipe.id,
@@ -41,7 +42,11 @@ const getRecipes = async (req, res, next) => {
                 }
             });
             allRecipes = apiRecipes.concat(dbRecipes)
-            res.send(allRecipes).status(200)
+            if(allRecipes.length > 0){
+                res.send(allRecipes).status(200)
+            }else{
+                return res.status(404).json("no se encontro ninguna receta con el nombre: ")
+            }
         } else {
             let apiInfo = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
             let dbInfo = Recipe.findAll({ include: Type })

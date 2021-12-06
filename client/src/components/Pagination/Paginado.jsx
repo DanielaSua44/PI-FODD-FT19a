@@ -11,8 +11,8 @@ const Paginado = ({ recipePage, totalRecipe, paginate }) => {
             <ul className={styles.pagination}>
                 {pageNumber &&
                     pageNumber.map(number => (
-                        <li className={styles.pagination.active} key={number} className={styles.pageItem}> 
-                            <a href="!#" onClick = {(e) =>{ e.preventDefault(); paginate(number)}} className={styles.pageLink}>{number}{""}</a>
+                        <li  key={number} className={styles.pageItem}> 
+                            <a href="!#" onClick = {(e) =>{ e.preventDefault(); paginate(number)}} className={styles.pageLink}>{number}</a>
                         </li>
                     ))
                 }     

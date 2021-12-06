@@ -1,11 +1,12 @@
-import { ADD_RECIPE, GET_RECIPES,DETAILS, FILTER_CREATED, GET_RECIPE_NAME, GET_TYPES, FILTER_SCORE, FILTER_TYPES, UNMOUNT_ALL_RECIPES, GET_RECIPE } from './actions';
+import { GET_RECIPES, SET_NAME, DETAILS, FILTER_CREATED, GET_RECIPE_NAME, GET_TYPES, FILTER_SCORE, FILTER_TYPES, UNMOUNT_ALL_RECIPES, GET_RECIPE, RESET_DETAILS } from './actions';
 
 
 const initialState = {
     recipes: [],
     allRecipes: [],
     diets: [],
-    details: []
+    details: [],
+    name: ''
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -32,18 +33,20 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 diets: action.payload
             }
+        case SET_NAME:
+            return {
+                ...state,
+                name: action.payload
+            }
         case UNMOUNT_ALL_RECIPES:
             return {
                 ...state,
                 recipes: []
             }
-        case ADD_RECIPE:
+        case RESET_DETAILS:
             return {
                 ...state,
-                recipes: [
-                    ...state.recipes,
-                    action.payload,
-                ],
+                details:[]
             }
         case GET_RECIPE_NAME:
             return {
@@ -92,11 +95,12 @@ export default function rootReducer(state = initialState, action) {
             }
         case FILTER_CREATED:
             console.log(state.allRecipes)
-            const createdFiltered = action.payload === 'Created' ? state.allRecipes.filter(rep => rep.createdInDb):state.allRecipes.filter(rep => !rep.createdInDb)
-                console.log(createdFiltered)
-            return { 
-                ...state, 
-                recipes: action.payload === 'All' ? state.allRecipes : createdFiltered }
+            const createdFiltered = action.payload === 'Created' ? state.allRecipes.filter(rep => rep.createdInDb) : state.allRecipes.filter(rep => !rep.createdInDb)
+            console.log(createdFiltered)
+            return {
+                ...state,
+                recipes: action.payload === 'All' ? state.allRecipes : createdFiltered
+            }
 
         default:
             return {

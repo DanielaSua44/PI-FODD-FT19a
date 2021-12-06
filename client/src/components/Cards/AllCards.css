@@ -6,6 +6,9 @@
     align-items: flex-start;
     image-rendering: crisp-edges;
     background-image: url("../../Image/descarga.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
   
   

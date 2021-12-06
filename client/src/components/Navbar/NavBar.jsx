@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import { NavLink,useHistory } from "react-router-dom"
+import { NavLink} from "react-router-dom"
 import SearchBar from './SearchBar';
 import Filteres from "../Filter/Filteres";
 import './Nav.css';
@@ -10,25 +10,22 @@ display:flex;
 justify-content:center;
 align-items:center;
 margin-bottom:1rem;
-background-color: #3d697a;
+background-color: #1b2c3f;
+border: 5px;
+border-color:#a68900 20px;
 `
 const NavBarLink = styled(NavLink)`
 margin:0.5rem;
 `
 
 const NavBar = () => {
-    const history =useHistory();
 
-    const handleClick = () => {
-        history.push('/')
-    }
     return (
         <NavBarContainer className="Nav">
-
-            
-            <button onClick= {handleClick} className="home"> Home </button>
-        
-            <NavBarLink to="/create">
+            <NavBarLink style={{textDecoration:'none'}} to="/">
+                <div className="buttonCreate"> Home </div>
+            </NavBarLink>
+            <NavBarLink to="/home/create">
             <button className="buttonCreate"> NewRecipe </button>
             </NavBarLink>
             <Filteres/>

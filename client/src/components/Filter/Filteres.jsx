@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterScore, getTypes, filterTypes, getRecipe,filterCreated } from "../../Redux/actions";
+import { filterScore, getTypes, filterTypes, getRecipe, filterCreated } from "../../Redux/actions";
 import './Filter.css'
 
 
@@ -17,8 +17,8 @@ export const Filteres = () => {
 
 
     const handleChange = (e) => {
-    
-        dispatch(getRecipe( e.target.value ))
+
+        dispatch(getRecipe(e.target.value))
     };
 
     function handleFilterScore(e) {
@@ -36,6 +36,11 @@ export const Filteres = () => {
         console.log(e.target.value)
         dispatch(filterCreated(e.target.value));
     };
+
+    const handleReset = () => {
+        dispatch(getRecipe())
+    }
+
 
     return (
         <div>
@@ -63,6 +68,8 @@ export const Filteres = () => {
                     <option value="asc">ASCENDENTE</option>
                     <option value="des">DESCENDENTE</option>
                 </select>
+                <button className="filter" onClick={handleReset}>RESET</button>
+
             </div>
         </div>
     )

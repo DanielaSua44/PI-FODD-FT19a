@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDetail } from '../../Redux/actions';
+import { getDetail, resetDetails } from '../../Redux/actions';
+import styles from './details.module.css';
 
 export function Details() {
     const dispatch = useDispatch()
@@ -12,8 +13,11 @@ export function Details() {
     const history = useHistory();
 
     useEffect(() => {
-       dispatch(getDetail(id))
-    }, [dispatch])
+        dispatch(getDetail(id))
+        return () => {
+            dispatch(resetDetails())
+        }
+    }, [dispatch,id])
 
     const goToBack = () => {
         history.goBack()
@@ -21,33 +25,33 @@ export function Details() {
 
 
     return (
-        <div>
-            <button onClick={goToBack}>⏪</button>
+        <div className={styles.details}>
+            <button style={{ background: '#f4651a' }} onClick={goToBack}>⏪</button>
             {
 
                 myRecipe ?
-                    <div key={myRecipe.id}>
-                        <h2> {myRecipe.name} </h2>
-                        <img src={myRecipe.img} alt={myRecipe.name} style={{ width: '200px', height: '200px', borderRadius: '5px' }} />
-                        <h3> Score: {myRecipe.score} </h3>
-                        <h3>HealthScore: {myRecipe.healthScore} </h3>
+                    <div className={styles.detailsLoad} key={myRecipe.id}>
+                        <h2 className={styles.detailsInfo}> {myRecipe.name} </h2>
+                        <img className={styles.detailsImg} src={myRecipe.img} alt={myRecipe.name} />
+                        <h3 className={styles.detailsRating}> Score: {myRecipe.score} </h3>
+                        <h3 className={styles.detailsRating}>HealthScore: {myRecipe.healthScore} </h3>
 
-                        <strong>Steps:</strong>
+                        <strong className={styles.detailsSteps}>Steps:</strong>
 
 
-                        <h4> {myRecipe.steps?.map(e =>
-                            <p> {e}</p>
+                        <h4 className={styles.ratingsTypesSteps}> {myRecipe.steps?.map(e =>
+                            <p className={styles.typesRatings}> {e}</p>
                         )} </h4>
 
                         <strong>Summary:</strong>
-                        <div >
+                        <div className={styles.titleSummary}>
                             <p> {myRecipe.summary}</p>
                         </div>
 
-                        <strong>Diets:</strong>
+                        <strong className={styles.detailsTypes}>Diets:</strong>
                         <div >
-                            {myRecipe.types ?.map((e) => (
-                                <div key={e.id} >{e} </div>
+                            {myRecipe.types?.map((e) => (
+                                <div className={styles.type} key={e.id} >{e} </div>
                             ))
                             }
                         </div>

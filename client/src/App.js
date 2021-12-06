@@ -14,9 +14,10 @@ function App() {
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={NavBar}/>
         <Route exact path="/home" component={Home} />
-        <Route  path="/details/:id"> <Details/> </Route>
-        <Route  path="/create" component={CreateRecipe}/>
+        <Route exact path="/details/:id"> <Details/> </Route>
+        <Route  path="/home/create" component={CreateRecipe}/>
     </div>
+    
   );
 }
 

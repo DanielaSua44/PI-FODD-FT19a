@@ -9,7 +9,7 @@ export const Allcards = ({recipes}) => {
         <div className='recipes-home'>
             {
                 recipes?recipes.map(el =>
-                    <Link to={`/details/${el.id}`} key={el.id}>
+                    <Link style={{textDecoration:'none'}} to={`/details/` + el.id} key={el.id}>
                         < Cards image={el.img} diets={el.types} id={el.id} name={el.name} />
                     </Link>
                 ):<h3>...Loading</h3>

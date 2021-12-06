@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 const axios = require('axios');
 const { v4: UUIDV4 } = require('uuid');
 const {diets} = require('../constants');
-
+//https://api.spoonacular.com/recipes/complexSearch&addRecipeInformation=true
 
 const getTypes = async(req,res,next) => {
     diets.forEach((el,index )=> {

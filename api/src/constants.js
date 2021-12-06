@@ -4,7 +4,7 @@ const BASE_URL =  'https://api.spoonacular.com/recipes';
 const COMPLEX_URL = BASE_URL + '/complexSearch?addRecipeInformation=true';
 const API_KEY = `apiKey=${apiKeyNumber}`;
 const diets = ["gluten free", "ketogenic","lacto ovo vegetarian" ,"vegetarian", 
-"vegan", "pescatarian", "paleolithic","low FODMAP", "primal", "whole30", "dairy free"];
+"vegan", "pescatarian", "paleolithic","fodmap friendly", "primal", "whole30", "dairy free"];
 
 
 //396c8a5c1dbd4fe7b2d8f2a895a2c87f

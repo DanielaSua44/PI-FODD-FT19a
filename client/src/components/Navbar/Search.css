@@ -18,7 +18,7 @@
 
 
   .buttonSearch {
-    width: 120px;
+    width: 80px;
     height: 40px;
     margin-top: 10px;
     font-size: 15px;
@@ -30,7 +30,7 @@
 
   .buttonSearch:hover {
     cursor: pointer;
-    width: 120px;
+    width: 80px;
     height: 40px;
     color: rgb(255, 255, 255);
     font-weight: 600;

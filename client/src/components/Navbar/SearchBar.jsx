@@ -1,35 +1,36 @@
 import React,{useState} from 'react';
 import { useDispatch } from 'react-redux';
-import { getRecipes} from '../../Redux/actions';
+import { getRecipes,setName} from '../../Redux/actions';
 import './Search.css';
 
 
 export function SearchBar() {
     const dispatch = useDispatch()
-    const [name, setName] = useState("")
+    const [input,setInput] = useState("")
 
 
     const handleOnChange = (e) => {
         e.preventDefault()
-        setName(e.target.value)
-        console.log(name)
+        setInput(e.target.value)
+        console.log(input)
     }
 
     const onSubmit = (e) => {
         e.preventDefault()
-        dispatch(getRecipes(name)) 
-        setName('')
+        dispatch(setName(input))
+        dispatch(getRecipes(input)) 
+        setInput('')
     }
 
     
     
     return (
-        <div>
+        <form onSubmit={onSubmit}>
             <input type='text'className="InputSearch" placeholder='Search...'
-            onChange={e => handleOnChange(e)} value={name}></input>
-            <button type='submit'className="buttonSearch" onClick={e => onSubmit(e)}>🔍</button>
+            onChange={e => handleOnChange(e)} value={input}></input>
+            <button type='submit'className="buttonSearch" >🔍</button>
            
-        </div>
+        </form>
     )
 }
 

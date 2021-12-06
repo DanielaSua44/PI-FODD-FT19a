@@ -1,0 +1,19 @@
+p.danger {
+	font-family: 'Poppins';
+	color: #f55c47;
+	text-align: center;
+	margin: 0;
+	font-size: 0.7rem;
+}
+
+p.pass {
+	display:  none;
+}
+
+input.danger {
+	border: 2px solid #f55c47;
+}
+
+textarea.danger {
+	border: 2px solid #f55c47;
+}

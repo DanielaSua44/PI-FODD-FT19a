@@ -11,7 +11,6 @@
     box-shadow: -9px 13px 13px 3px rgba(0,0,0,0.94);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-transform: uppercase;
-    text-decoration: none;
     cursor: pointer;
     transition: transform 250ms ease;
 }
@@ -34,7 +33,7 @@
 
 .card-info a{
 	color: white;
-    text-decoration: none;
+
 }
 
 .card-title{

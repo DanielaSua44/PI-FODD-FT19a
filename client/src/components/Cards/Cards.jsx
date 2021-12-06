@@ -4,8 +4,8 @@ import './cards.css'
 export const Cards = ({ name, id, image, diets }) => {
     return (
         <div className='card'>
-            <div className='card-info' key={id}>
-                <h2 className='card-title'>{name}</h2>
+            <div style={{textDecoration:"none"}} className='card-info' key={id}>
+                <h2 className='card-title' style={{textDecoration:"none", color:"black"}}>{name}</h2>
                 <h4 className='card-diets'>Diets</h4>
                 {diets?.map(e => e)}
             </div>

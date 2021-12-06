@@ -1,0 +1,135 @@
+.details {
+    display: flex;
+    height: 100%;
+    background-image: url('../../Image/descarga.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: rgba(197, 192, 192, 0.863);
+}
+
+/* Loading */
+.detailsLoad {
+    margin-top: 30px;
+    padding: 50px;
+    color: rgba(197, 192, 192, 0.863);
+}
+
+/* Information */
+.detailsInfo {
+    margin: 70px 50px 50px 50px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    border: 1px rgba(153, 147, 147, 0.863) solid;
+    border-radius: 20px;
+    background-color: rgba(14, 13, 13, 0.74);
+    width: 50%;
+}
+
+/* Title, summary and image */
+.titleSummary {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+
+.titleSummary {
+    margin-right: 40px;
+    font-weight: 700;
+}
+
+
+
+.detailsTitle {
+    font-size: 70px;
+    margin: 0;
+    align-items: center;
+}
+
+.detailsSummary {
+    font-size: 25px;
+}
+
+.detailsImg {
+    height: 400px;
+    width: 400px;
+    border-radius: 20px;
+    align-self: center;
+}
+
+
+/* Ratings, types and steps */
+.ratingsTypesSteps {
+    border: 1px rgba(153, 147, 147, 0.863) solid;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(5, 5, 5, 0.486);
+    margin: 15px 0;
+}
+
+.typesRatings {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+/* Types */
+.detailsTypes {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.detailsTypes  {
+    font-weight: 600;
+    font-size: 25px;
+    margin-top: 3px;
+    margin-bottom: 15px;
+}
+
+.detailsTypes  {
+    font-size: 20px;
+    padding: 3px;
+}
+
+.type {
+    text-transform: capitalize;
+}
+
+/* Ratings */
+.detailsRating {
+    background-color: rgba(5, 5, 5, 0.486);
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+
+.detailsRating  {
+    font-size: 20px;
+    text-align: center;
+}
+
+.detailsRating  {
+    font-weight: 600;
+}
+
+/* Steps */
+.detailsSteps  {
+    font-weight: 600;
+    font-size: 25px;
+    margin-top: 3px;
+    margin-bottom: 15px;
+}
+
+.detailsSteps  {
+    font-size: 20px;
+}
+
