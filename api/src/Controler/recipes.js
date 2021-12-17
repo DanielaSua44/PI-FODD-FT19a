@@ -85,8 +85,8 @@ const getRecipes = async (req, res, next) => {
                     }
                 })
                 //aca los uno
-                allRecipes = apiRecipes.concat(dbRecipes)
-                if (order === "asc" || !order) {
+                allRecipes = dbRecipes.concat(apiRecipes)
+                if (order === "asc" || !order || order === "") {
                     allRecipes = allRecipes.sort((a, b) => {
                         return a.name.toLowerCase().localeCompare(b.name.toLowerCase())
                     })
