@@ -1,4 +1,4 @@
-import { GET_RECIPES, SET_NAME, DETAILS, FILTER_CREATED, GET_RECIPE_NAME, GET_TYPES, FILTER_SCORE, FILTER_TYPES, UNMOUNT_ALL_RECIPES, GET_RECIPE, RESET_DETAILS } from './actions';
+import { GET_RECIPES, SET_NAME,SET_ORDER, DETAILS, FILTER_CREATED, GET_RECIPE_NAME, GET_TYPES, FILTER_SCORE, FILTER_TYPES, UNMOUNT_ALL_RECIPES, GET_RECIPE, RESET_DETAILS } from './actions';
 
 
 const initialState = {
@@ -6,7 +6,8 @@ const initialState = {
     allRecipes: [],
     diets: [],
     details: [],
-    name: ''
+    name: '',
+    order: ''
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -46,7 +47,12 @@ export default function rootReducer(state = initialState, action) {
         case RESET_DETAILS:
             return {
                 ...state,
-                details:[]
+                details: []
+            }
+        case SET_ORDER:
+            return {
+                ...state,
+                order: action.payload
             }
         case GET_RECIPE_NAME:
             return {

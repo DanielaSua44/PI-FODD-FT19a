@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterScore, getTypes, filterTypes, getRecipe, filterCreated } from "../../Redux/actions";
+import { filterScore, getTypes,setOrder, filterTypes, getRecipe, filterCreated } from "../../Redux/actions";
 import './Filter.css'
 
 
@@ -17,7 +17,7 @@ export const Filteres = () => {
 
 
     const handleChange = (e) => {
-
+        dispatch(setOrder(e.target.value))
         dispatch(getRecipe(e.target.value))
     };
 

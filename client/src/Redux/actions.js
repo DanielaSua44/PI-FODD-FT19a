@@ -10,7 +10,8 @@ export const UNMOUNT_ALL_RECIPES = "UNMOUNT_ALL_RECIPES";
 export const FILTER_CREATED = "FILTER_CREATED";
 export const DETAILS ="DETAILS";
 export const SET_NAME = "SET_NAME";
-export const RESET_DETAILS ="RESET_DETAILS"
+export const RESET_DETAILS ="RESET_DETAILS";
+export const SET_ORDER = "SET_ORDER"
 
 
 
@@ -107,3 +108,10 @@ export function filterCreated(payload) {
         payload
     }
 };
+
+export const setOrder = (order)=>{
+    return{
+        type: SET_ORDER,
+        payload: order
+    }
+}

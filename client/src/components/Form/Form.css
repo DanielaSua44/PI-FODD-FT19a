@@ -17,3 +17,16 @@ input.danger {
 textarea.danger {
 	border: 2px solid #f55c47;
 }
+
+.containerButton{
+  height: 45px;
+  line-height:45px;
+  width: 30%;
+  background: #f4651a;
+  color:#fff;
+  font-weight:bold;
+  border: none;
+  border-radius:3px;
+  cursor: pointer;
+  transition: .1s ease all;
+}

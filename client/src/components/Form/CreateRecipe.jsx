@@ -1,25 +1,16 @@
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getTypes, postRecipe } from "../../Redux/actions";
-import { useHistory } from 'react-router-dom';
+import { getTypes } from "../../Redux/actions";
+import { useHistory, Link } from 'react-router-dom';
 import axios from "axios";
 import {
-    Main, Formulario, Label, Input, Perror, ConteinerButton,
-    MensjError, MensjExito, Boton, CreateTitle, TypeCheck, Textarea
+    Main, Formulario, Label, Input, ConteinerButton,
+    Boton, CreateTitle, TypeCheck, Textarea
 } from './formulario';
 import './Form.css'
 
 
-const initialForm = {
-    name: "",
-    score: "",
-    healthScore: "",
-    summary: "",
-    types: [],
-    steps: "",
-    img: "",
-};
 
 const validate = function (recipe) {
     let errors = {};
@@ -63,7 +54,7 @@ const validate = function (recipe) {
         errors.summary = '';
     }
     if (!recipe.steps) {
-        errors.steps = 'Type a Instructions';
+        errors.steps = 'Escriba los pasos a seguir separados por comas';
     } else {
         errors.steps = '';
     }
@@ -81,7 +72,7 @@ export const CreateRecipe = () => {
         healthScore: "",
         summary: "",
         types: [],
-        steps:"",
+        steps: [],
         img: "",
     });
     const [errors, setErrors] = useState({});
@@ -133,14 +124,14 @@ export const CreateRecipe = () => {
         axios
             .post(`/recipes`, recipe)
             .then((rep) => {
-                alert('¡Something New to Cook! :)');
+                alert('¡Reseta creada sastifactoriamente! :)');
                 setRecipe({
                     name: "",
                     score: "",
                     healthScore: "",
                     summary: "",
                     types: [],
-                    steps:"",
+                    steps: [],
                     img: "",
                 })
                 history.push('/home')
@@ -149,12 +140,15 @@ export const CreateRecipe = () => {
                 alert('¡Oops!, an error occurred, try again'),
                 history.go(0)
             );
-    
+
 
     }
     return (
         <Main>
             <Formulario onSubmit={handleSubmit}>
+                <Link style={{ textDecoration: 'none' }} to="/home">
+                    <button className="containerButton">Volver</button>
+                </Link>
                 <div>
                     <CreateTitle id="title">Crea tu receta</CreateTitle>
                 </div>

@@ -9,9 +9,7 @@ export const Home = () => {
     const dispatch = useDispatch()
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [recipePage, setRecipePage] = useState(9);
-
-
+    const [recipePage] = useState(9);
 
     useEffect(() => {
         dispatch(getRecipes())
